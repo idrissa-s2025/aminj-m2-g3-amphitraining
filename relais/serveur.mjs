@@ -95,7 +95,7 @@ function servirStatique(req, res) {
   const fichier = path.normalize(path.join(web, url === '/' ? 'index.html' : url));
   if (!fichier.startsWith(web) || !fs.existsSync(fichier) || fs.statSync(fichier).isDirectory())
     return repondre(res, 404, { erreur: 'introuvable' });
-  res.writeHead(200, { 'Content-Type': TYPES[path.extname(fichier)] || 'application/octet-stream' });
+  res.writeHead(200, { 'Content-Type': TYPES[path.extname(fichier)] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
   fs.createReadStream(fichier).pipe(res);
 }
 
