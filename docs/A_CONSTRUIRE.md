@@ -1,4 +1,4 @@
-# Ce que le groupe G3 conçoit
+# Ce que le groupe P3 conçoit
 
 Le socle montre une chaîne technique : un résumé d'exposé part au relais, une question
 revient du « public ». Il ne fait rien apprendre. Les sept éléments ci-dessous sont ceux du

@@ -1,4 +1,4 @@
-# AmphiTraining (G3)
+# AmphiTraining (P3)
 
 Socle de projet du Master 2 AMINJ, INU Champollion, 2026-2027.
 Module « Développer une ingénierie pédagogique pour les serious games ».
@@ -30,7 +30,7 @@ l'écoute de l'orateur, les critères de l'oral, la progression et le débriefin
 ## Démarrer
 
 1. **Unity 6000.6.0f1** avec le module *Android Build Support*. Ouvrir le dossier depuis
-   Unity Hub, dans un chemin court (par exemple `C:\aminj\g3`).
+   Unity Hub, dans un chemin court (par exemple `C:\aminj\p3`).
 2. Menu **AMINJ > 1. Préparer la scène du socle**, puis ouvrir `Assets/Amphi/Scenes/Amphi.unity`.
 3. **Relais** (Node 18 ou plus) : copier `relais/env.exemple` en `relais/.env`, y coller la clé
    fournie par l'enseignant, lancer `node relais/serveur.mjs`.
