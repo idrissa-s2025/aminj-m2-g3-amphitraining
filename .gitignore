@@ -1,0 +1,29 @@
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+*.csproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+*.apk
+*.aab
+.vs/
+.idea/
+.DS_Store
+
+# Relais : la cle et les journaux ne se versionnent jamais
+relais/.env
+relais/journal/
+node_modules/
+
+# Cles posees par erreur dans le projet
+**/cle_*.txt

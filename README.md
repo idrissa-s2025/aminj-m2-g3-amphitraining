@@ -1,0 +1,57 @@
+# AmphiTraining (G3)
+
+Socle de projet du Master 2 AMINJ, INU Champollion, 2026-2027.
+Module « Développer une ingénierie pédagogique pour les serious games ».
+
+Ce dépôt n'est pas le projet AmphiTraining complet. C'est une **base de départ ciblée** :
+l'amphithéâtre, son éclairage, les robots du public, l'écran de présentation et une brique
+d'agent OpenAI propre. Ce qui en fait une **formation à la prise de parole** reste à
+concevoir par le groupe.
+
+## Ce que contient le socle
+
+| Élément | Où | État |
+|---|---|---|
+| Amphithéâtre de 228 places, éclairage cuit | `Assets/Amphi/Scenes/Amphi.unity`, `Model/`, `Textures/` | fourni |
+| Robots du public (modèle et matériaux) | `Assets/Amphi/Robot/` | fourni, sans comportement |
+| Rig VR, déplacement, sièges | `Assets/Amphi/Runtime/` | fourni |
+| Écran et panneau de présentation (PDF) | `Assets/Amphi/Runtime/Presentation/` | fourni |
+| Affiches et logo | `Assets/Amphi/Resources/` | fourni |
+| Agent par le relais (texte) | `AgentRelais.cs` et `relais/` | fourni, fonction didactique à écrire |
+| Une question du public (démonstration, touche Q) | `QuestionDuPublic.cs` | fourni |
+| Traces xAPI simplifiées | `TraceXapi.cs`, écrites par le relais | fourni, verbes à choisir |
+
+## Ce qui n'y est pas, volontairement
+
+Les rôles des dix robots, leurs réactions, le moment où le public intervient, la voix,
+l'écoute de l'orateur, les critères de l'oral, la progression et le débriefing : voir
+[`docs/A_CONSTRUIRE.md`](docs/A_CONSTRUIRE.md).
+
+## Démarrer
+
+1. **Unity 6000.6.0f1** avec le module *Android Build Support*. Ouvrir le dossier depuis
+   Unity Hub, dans un chemin court (par exemple `C:\aminj\g3`).
+2. Menu **AMINJ > 1. Préparer la scène du socle**, puis ouvrir `Assets/Amphi/Scenes/Amphi.unity`.
+3. **Relais** (Node 18 ou plus) : copier `relais/env.exemple` en `relais/.env`, y coller la clé
+   fournie par l'enseignant, lancer `node relais/serveur.mjs`.
+4. *Play* dans l'éditeur, puis touche **Q** : le public pose une question sur le résumé saisi
+   dans *QuestionDuPublic*. Dans le casque, renseigner l'adresse IP du PC dans *AgentRelais* et
+   *TraceXapi*.
+
+## Règles
+
+- **La clé OpenAI ne quitte jamais le relais.** `relais/.env` est ignoré par Git.
+- Aucune donnée personnelle réelle ; aucun enregistrement de voix sans consentement.
+- AI Act, article 5 : simuler les émotions des robots est permis ; inférer les émotions
+  réelles de l'apprenant est interdit en éducation.
+- L'agent annonce qu'il est une IA (article 50).
+
+## Structure
+
+```
+Assets/AMINJ/Scripts/Runtime   AgentRelais, TraceXapi, QuestionDuPublic
+Assets/AMINJ/Scripts/Editor    PreparerSocle (menu AMINJ)
+Assets/Amphi                   salle, robots, rig, présentation
+relais/                        serveur.mjs, consignes_agent.md, env.exemple
+docs/A_CONSTRUIRE.md           ce que le groupe conçoit
+```
