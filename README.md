@@ -38,6 +38,27 @@ l'écoute de l'orateur, les critères de l'oral, la progression et le débriefin
    dans *QuestionDuPublic*. Dans le casque, renseigner l'adresse IP du PC dans *AgentRelais* et
    *TraceXapi*.
 
+## L'agent IA : où tout se trouve
+
+L'agent passe toujours par le relais : le client (casque ou navigateur) envoie une question et
+un contexte, le relais ajoute la clé et les consignes, puis appelle OpenAI.
+
+| Ce qui | Fichier | Ce que le groupe y fait |
+|---|---|---|
+| Appel à OpenAI, clé, modèle, plafonds | `relais/serveur.mjs` | rien en principe ; modèle et plafonds se règlent dans `relais/.env` |
+| Clé et réglages (`OPENAI_API_KEY`, `OPENAI_MODEL`, `MAX_APPELS_JOUR`) | `relais/.env`, copié de `relais/env.exemple` | coller la clé ; jamais dans Git |
+| **Instruction** de l'agent (message système) | `relais/consignes_agent.md` | **à réécrire** : rôle, ce qu'il dit, ce qu'il ne dit jamais, forme |
+| Côté Unity : envoi de la question et réception de la réponse | `Assets/AMINJ/Scripts/Runtime/AgentRelais.cs` | brancher la voix, l'animation des robots |
+| Quand le public pose une question, et laquelle | `Assets/AMINJ/Scripts/Runtime/QuestionDuPublic.cs` (touche Q, `DemanderUneQuestion()`) | décider du moment et du rôle |
+| **Connaissances** transmises : le résumé de l'exposé | champ `resumeDemo` de `QuestionDuPublic`, à remplacer par le vrai contenu de l'exposé | définir ce que le public « sait » |
+| Traces xAPI envoyées au relais | `Assets/AMINJ/Scripts/Runtime/TraceXapi.cs` | choisir les verbes |
+| Journal des échanges et des traces | `relais/journal/*.jsonl` | lire pour l'évaluation et le débriefing |
+
+Le relais relit `consignes_agent.md` à chaque question : une modification s'applique sans
+redémarrer. Les connaissances ne sont pas « apprises » par le modèle : elles lui sont
+transmises à chaque échange dans le contexte. Ce qui n'est pas dans le contexte, l'agent doit
+dire qu'il ne le sait pas.
+
 ## Règles
 
 - **La clé OpenAI ne quitte jamais le relais.** `relais/.env` est ignoré par Git.
